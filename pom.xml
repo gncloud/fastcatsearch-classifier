@@ -5,7 +5,7 @@
     </properties>
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.fastcat</groupId>
-    <artifactId>fastcatsearch</artifactId>
+    <artifactId>fastcatsearch-classifier</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
     <name>fastcatsearch-classifier</name>
     <url>http://www.fastcat.co</url>
@@ -39,19 +39,11 @@
 			<artifactId>json</artifactId>
 			<version>20140107</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-analyzers</artifactId>
 			<version>3.5.0</version>
 		</dependency>
-<!--
-		<dependency>
-			<groupId>lucene-analyzer</groupId>
-			<artifactId>arirang</artifactId>
-			<version>4.9</version>
-		</dependency>
--->
 	</dependencies>
 
 	<build>

@@ -60,11 +60,11 @@ public class ClassifierTable extends BasicStringHashSet {
 	 **/
 	private static final double SCORE_IGNORE = -Math.log(0.5);
 	
-	public void learn(CharSequence term, int categoryId, int terms) {
-		learn(term, categoryId, terms, false);
+	public void learnTerm(CharSequence term, int categoryId, int terms) {
+		learnTerm(term, categoryId, terms, false);
 	}
 	
-	public void learn(CharSequence term, int categoryId, int terms, boolean fix) {
+	public void learnTerm(CharSequence term, int categoryId, int terms, boolean fix) {
 		if(!freezed) {
 			int termId = put(term);
 			int scoreId = getScoreId(termId, categoryId, terms);
