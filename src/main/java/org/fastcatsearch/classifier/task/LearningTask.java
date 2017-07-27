@@ -22,8 +22,9 @@ public class LearningTask implements Closeable {
 	private ClassifierTable table;
 	private Analyzer analyzer;
 	
-	public LearningTask() {
-		
+	public LearningTask(int tableSize, int hashBucketSize, int categoryLength, Analyzer analyzer) {
+		this.analyzer = analyzer;
+		this.table = new ClassifierTable(tableSize, hashBucketSize, categoryLength);
 	}
 	
 	public void learn(Iterator<LearningItem> data) {
@@ -34,18 +35,21 @@ public class LearningTask implements Closeable {
 	}
 	
 	public void learnItem(int category, String text) {
+		Reader reader = null;
+		reader = new StringReader(text);
+		learnItem(category, analyzer.tokenStream("", reader));
+		try {
+			reader.close();
+		} catch (Exception ignore) { }
+	}
+	
+	public void learnItem(int category, TokenStream tstream) {
 		//remove duplicate for 1 item
-		
-		Reader reader = new StringReader(text);
-		TokenStream tstream = null;
 		Set<String> set = new HashSet<String>();
-		
 		int cntWord = 0;
 		try {
-			tstream = analyzer.tokenStream("", reader);
 			CharTermAttribute term = tstream.getAttribute(CharTermAttribute.class);
 			tstream.reset();
-			logger.trace("TEXT:{}", text);
 			while (tstream.incrementToken()) {
 				String termStr = term.toString();
 				if(!set.contains(termStr)) {
@@ -59,7 +63,6 @@ public class LearningTask implements Closeable {
 			logger.error("", e);
 		} finally {
 		}
-		analyzer.close();
 
 		// add 1 item in-category / total
 		table.adjust(category, cntWord, 1, 1);
@@ -71,5 +74,6 @@ public class LearningTask implements Closeable {
 
 	@Override
 	public void close() throws IOException {
+		analyzer.close();
 	}
 }
