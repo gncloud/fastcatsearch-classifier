@@ -1,4 +1,4 @@
-package org.fastcatsearch.common.ds;
+package org.fastcatsearch.common.data.type;
 
 import static org.junit.Assert.*;
 
