@@ -41,8 +41,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-analyzers</artifactId>
-			<version>3.5.0</version>
+			<artifactId>lucene-analyzers-common</artifactId>
+			<version>4.9.1</version>
 		</dependency>
 	</dependencies>
 

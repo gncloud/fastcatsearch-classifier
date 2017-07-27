@@ -5,5 +5,5 @@ import java.util.Iterator;
 
 public interface AnalyzedTermsIterator extends Iterator<String>, Closeable {
 	public void setAnalyzer(Analyzer analyzer);
-	public void prepareText(CharSequence text);
+	public void prepareText(String text);
 }
